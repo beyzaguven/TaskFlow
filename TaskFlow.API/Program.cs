@@ -1,13 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using TaskFlow.Infrastructure.Persistence;
+using TaskFlow.Application;
+using TaskFlow.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add services to the container.
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure();
 
+// Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
