@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaskFlow.Application.DTOs.Auth;
 using TaskFlow.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace TaskFlow.API.Controllers;
 
@@ -29,5 +31,21 @@ public class AuthController : ControllerBase
         var result = await _authService.LoginAsync(request);
 
         return Ok(result);
+    }
+
+    [Authorize]
+    [HttpGet("me")]
+    public IActionResult Me()
+    {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var fullName = User.FindFirst(ClaimTypes.Name)?.Value;
+        var email = User.FindFirst(ClaimTypes.Email)?.Value;
+
+        return Ok(new
+        {
+            UserId = userId,
+            FullName = fullName,
+            Email = email
+        });
     }
 }

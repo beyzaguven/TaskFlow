@@ -1,8 +1,56 @@
+# Build folders
 bin/
 obj/
-.vs/
+[Bb]in/
+[Oo]bj/
 
+# Visual Studio
+.vs/
 *.user
 *.suo
+*.userosscache
+*.sln.docstates
 
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Test results
 TestResults/
+
+# Cache / temp
+*.cache
+*.tmp
+*.temp
+*.vsidx
+*.bin
+
+# NuGet
+*.nupkg
+packages/
+
+# Coverage
+coverage/
+*.coverage
+*.coveragexml
+
+# Publish
+publish/
+
+# Node (ileride frontend eklersen)
+node_modules/
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
